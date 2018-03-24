@@ -31,11 +31,11 @@ public class TestUtils {
             boolean notAWinner;
             do {
                 int firstRoll = rand.nextInt(6) + 1;
-                writer.append(Integer.toString(firstRoll) + "\n");
+                writer.append(Integer.toString(firstRoll));
                 aGame.roll(firstRoll);
 
                 int secondRoll = rand.nextInt(9);
-                writer.append(Integer.toString(secondRoll) + "\n");
+                writer.append(Integer.toString(secondRoll));
 
                 if (secondRoll == 7) {
                     notAWinner = aGame.wrongAnswer();
@@ -43,6 +43,8 @@ public class TestUtils {
                     notAWinner = aGame.wasCorrectlyAnswered();
                 }
             } while (notAWinner);
+
+            writer.append("\n");
         }
 
         writer.close();
