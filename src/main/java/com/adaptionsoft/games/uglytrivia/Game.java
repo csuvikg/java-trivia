@@ -68,7 +68,7 @@ public class Game {
 
                 Logger.log(currentPlayer.getName() + " is getting out of the penalty box");
             } else {
-                Logger.log(players.get(currentPlayerIndex) + " is not getting out of the penalty box");
+                Logger.log(currentPlayer.getName() + " is not getting out of the penalty box");
             }
         }
 
@@ -79,7 +79,7 @@ public class Game {
             Logger.log(currentPlayer.getName()
                     + "'s new location is "
                     + currentPlayer.getCurrentField());
-            Logger.log("The category is " + nextField.getQuestionType());
+            Logger.log("The category is " + nextField.getQuestionType().getTitle());
 
             askQuestion(nextField.getQuestionType());
         }
@@ -96,9 +96,9 @@ public class Game {
         Player currentPlayer = players.get(currentPlayerIndex);
 
         if (!currentPlayer.isInPenalty()) {
-            Logger.log("Answer was corrent!!!!");
+            Logger.log("Answer was correct!!!!");
             currentPlayer.setPoints(currentPlayer.getPoints() + 1);
-            Logger.log(players.get(currentPlayerIndex)
+            Logger.log(currentPlayer.getName()
                     + " now has "
                     + currentPlayer.getPoints()
                     + " Gold Coins.");
