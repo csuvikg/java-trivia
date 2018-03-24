@@ -20,30 +20,34 @@ public class SomeTest {
         PrintStream out = new PrintStream(new FileOutputStream("testdata/testoutput"));
         System.setOut(out);
 
-		Game aGame = new Game();
-
-		aGame.add("Chet");
-		aGame.add("Pat");
-		aGame.add("Sue");
-
         BufferedReader reader = new BufferedReader(new FileReader("testdata/input"));
+        for (int i = 0; i < 100; i++) {
+            Game aGame = new Game();
 
-        boolean notAWinner;
-        do {
-			int firstRoll = Integer.parseInt(reader.readLine());
-			aGame.roll(firstRoll);
+            aGame.add("Chet");
+            aGame.add("Pat");
+            aGame.add("Sue");
 
-			int secondRoll = Integer.parseInt(reader.readLine());
+            boolean notAWinner;
+            do {
+                int firstRoll = Integer.parseInt(reader.readLine());
+                aGame.roll(firstRoll);
 
-			if (secondRoll == 7) {
-				notAWinner = aGame.wrongAnswer();
-			} else {
-				notAWinner = aGame.wasCorrectlyAnswered();
-			}
-		} while (notAWinner);
+                int secondRoll = Integer.parseInt(reader.readLine());
+
+                if (secondRoll == 7) {
+                    notAWinner = aGame.wrongAnswer();
+                } else {
+                    notAWinner = aGame.wasCorrectlyAnswered();
+                }
+            } while (notAWinner);
+        }
+
+        out.close();
 
         String expected = FileUtils.readFileToString(new File("testdata/output"), "utf-8");
         String actual = FileUtils.readFileToString(new File("testdata/testoutput"), "utf-8");
+
         assertEquals(expected, actual);
 	}
 }
