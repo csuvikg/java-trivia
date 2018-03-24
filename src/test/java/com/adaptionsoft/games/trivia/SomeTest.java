@@ -7,6 +7,10 @@ import org.apache.commons.io.FileUtils;
 import org.junit.Test;
 
 import java.io.*;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class SomeTest {
 
@@ -21,6 +25,7 @@ public class SomeTest {
         System.setOut(out);
 
         BufferedReader reader = new BufferedReader(new FileReader("testdata/input"));
+
         for (int i = 0; i < 100; i++) {
             Game aGame = new Game();
 
@@ -28,19 +33,8 @@ public class SomeTest {
             aGame.add("Pat");
             aGame.add("Sue");
 
-            boolean notAWinner;
-            do {
-                int firstRoll = Integer.parseInt(reader.readLine());
-                aGame.roll(firstRoll);
-
-                int secondRoll = Integer.parseInt(reader.readLine());
-
-                if (secondRoll == 7) {
-                    notAWinner = aGame.wrongAnswer();
-                } else {
-                    notAWinner = aGame.wasCorrectlyAnswered();
-                }
-            } while (notAWinner);
+            int[] rolls = Arrays.stream(reader.readLine().split("")).mapToInt(Integer::parseInt).toArray();
+            aGame.play(rolls);
         }
 
         out.close();
