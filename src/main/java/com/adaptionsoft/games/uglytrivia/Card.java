@@ -1,9 +1,11 @@
 package com.adaptionsoft.games.uglytrivia;
 
 public class Card {
+    private int index;
     private QuestionType questionType;
 
-    public Card(QuestionType questionType) {
+    public Card(int index, QuestionType questionType) {
+        this.index = index;
         this.questionType = questionType;
     }
 
@@ -11,7 +13,8 @@ public class Card {
         return questionType;
     }
 
-    public void setQuestionType(QuestionType questionType) {
-        this.questionType = questionType;
+    @Override
+    public String toString() {
+        return questionType + " Question " + index;
     }
 }

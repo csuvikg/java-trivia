@@ -33,7 +33,7 @@ public class Deck {
 
         Arrays.stream(QuestionType.values()).forEach(type -> {
             for (int i = 0; i < numberOfCardsByCategory; i++) {
-                cardList.add(new Card(type));
+                cardList.add(new Card(i, type));
             }
         });
     }

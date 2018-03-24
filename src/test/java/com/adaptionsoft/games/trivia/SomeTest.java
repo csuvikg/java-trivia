@@ -3,14 +3,12 @@ package com.adaptionsoft.games.trivia;
 import static org.junit.Assert.*;
 
 import com.adaptionsoft.games.uglytrivia.Game;
+import com.adaptionsoft.games.uglytrivia.Logger;
 import org.apache.commons.io.FileUtils;
 import org.junit.Test;
 
 import java.io.*;
 import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class SomeTest {
 
@@ -18,6 +16,17 @@ public class SomeTest {
 	public void true_is_true() {
 		assertTrue(true);
 	}
+
+	@Test
+    public void gameDoesNotStartIfNotEnoughPlayers() {
+        Game aGame = new Game();
+
+        aGame.add("Chet");
+
+        aGame.play(new int[]{1});
+
+        assertTrue(Logger.contains("Not enough players to play the game!"));
+    }
 
 	@Test
 	public void testGame() throws IOException {
