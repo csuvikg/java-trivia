@@ -24,7 +24,7 @@ public class Game {
 
     public  Game(){
         this.deck = new Deck(50);
-        this.board = new Board();
+        this.board = new Board(12);
         this.playerss = new ArrayList();
     }
 
