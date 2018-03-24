@@ -1,10 +1,7 @@
 package com.adaptionsoft.games.uglytrivia;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.LinkedList;
+import java.util.*;
 
 public class Game {
     ArrayList players = new ArrayList();
@@ -20,8 +17,15 @@ public class Game {
     int currentPlayer = 0;
     boolean isGettingOutOfPenaltyBox;
 
+
+    private List<Player> playerss;
+    private Deck deck;
+    private Board board;
+
     public  Game(){
-    	createQuestions(50);
+        this.deck = new Deck(50);
+        this.board = new Board();
+        this.playerss = new ArrayList();
     }
 
     public void play(int[] rolls) throws IOException {
@@ -44,14 +48,6 @@ public class Game {
         } while (notAWinner);
     }
 
-	private void createQuestions(int numberOfQuestions) {
-		for (int i = 0; i < numberOfQuestions; i++) {
-			popQuestions.addLast(createQuestion(QuestionType.POP, i));
-			scienceQuestions.addLast(createQuestion(QuestionType.SCIENCE, i));
-			sportsQuestions.addLast(createQuestion(QuestionType.SPORTS, i));
-			rockQuestions.addLast(createQuestion(QuestionType.ROCK, i));
-		}
-	}
 
 	public String createQuestion(QuestionType type, int index){
 		return type.getTitle() + " Question " + index;
